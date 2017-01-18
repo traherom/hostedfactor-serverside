@@ -1,0 +1,22 @@
+version: '2'
+services:
+  proxy:
+    env_file: .env
+    environment:
+      - PROXY_FROM=:80
+
+  # Enable hot reloading for Django
+  # This is broken off from the main compose file to allow a prod
+  # compose set up.
+  web:
+    command: ./manage.py runserver 0.0.0.0:8000
+    env_file: .env
+    volumes:
+      - ./hostedfactor/:/code/
+    stdin_open: true
+    tty: true
+
+  db:
+    env_file: .env
+    ports:
+      - "5432:5432"

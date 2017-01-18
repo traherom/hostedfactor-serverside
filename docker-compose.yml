@@ -1,0 +1,48 @@
+version: '2'
+services:
+  # Let's Encrypt helper proxy
+  proxy:
+    image: traherom/caddyproxy-docker:latest
+    environment:
+      - CADDYPATH=/etc/caddycerts
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /opt/hostedfactor/data/ssl/:/etc/caddycerts/
+    links:
+      - web
+
+  # Django
+  web:
+    image: hostedfactor:build
+    command: gunicorn -b 0.0.0.0:8000 app.wsgi
+    environment:
+      - SERVER_MODE
+      - DEBUG
+      - MEDIA_ROOT=/uploads
+      - SECRET_KEY
+      - USE_ROLLBAR
+      - USE_SMTP
+      - ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - IS_WEB="True"
+    expose:
+      - "8000"
+    volumes:
+      - /opt/hostedfactor/data/files/uploads/:/uploads/
+      - /opt/hostedfactor/data/files/downloads/:/downloads/
+      - /opt/hostedfactor/storage/:/storage/
+    links:
+      - db
+
+  # Data
+  db:
+    image: postgres:9.5
+    environment:
+      - PGDATA=/var/lib/postgresql/data/app
+    expose:
+      - "5432"
+    volumes:
+      - /opt/hostedfactor/data/db:/var/lib/postgresql/data/app/
+      - /opt/hostedfactor/storage/:/storage/
