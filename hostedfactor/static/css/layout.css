@@ -1,0 +1,79 @@
+html, body {
+  flex-direction: column;
+
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  color: #333;
+}
+
+/*******************
+Main content containers
+*******************/
+nav.navbar {
+  z-index: 1000;
+  margin-bottom: 0;
+}
+
+.navbar-collapse.collapsing,
+.navbar-collapse.in {
+  background: white;
+}
+
+main {
+  position: relative;
+  padding: -.5em 1em 0 1em;
+}
+
+footer {
+  font-size: .8em;
+  text-align: center;
+  padding: 1em .25em .25em .25em;
+}
+
+/*******************
+Content helpers
+*******************/
+/** General layout **/
+.hbox {
+  display: flex;
+  flex-direction: row;
+  min-height: min-content;
+}
+
+.vbox {
+  display: flex;
+  flex-direction: column;
+  min-width: min-content;
+}
+
+.shrink {
+  flex: 0 0;
+}
+
+.grow {
+  flex: 1 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/** Tables of info **/
+tbody tr.highlight td {
+  background-color: #ffb6b6;
+}
+
+.table.table-data tr td:first-child {
+  font-weight: bold;
+  width: 8em;
+}
+
+.table-nonfluid,
+.nonfluid {
+  width: auto !important;
+}
+
+/** Paging **/
+.pagination {
+  width: 100%;
+  text-align: center;
+}

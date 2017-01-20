@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+  <h1>
+    {% block form_title %}{% endblock %}
+  </h1>
+
+  {% block pre_form %}
+  {% endblock %}
+
+  {% bootstrap_messages %}
+
+  {% block form %}
+    <form
+      action="{% block form_action %}{% endblock %}"
+      method="{% block form_method %}post{% endblock %}"
+      class="form"
+      {% block form_attrs %}{% endblock %}
+      >
+
+      {% csrf_token %}
+
+      {% bootstrap_form form %}
+
+      {% buttons %}
+        {% block buttons %}
+          <button type="submit" class="btn btn-primary">{% block submit_name %}Submit{% endblock %}</button>
+        {% endblock %}
+      {% endbuttons %}
+    </form>
+  {% endblock %}
+
+  {% block post_form %}
+  {% endblock %}
+{% endblock %}

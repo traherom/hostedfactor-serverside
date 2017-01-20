@@ -1,0 +1,13 @@
+{% extends 'common/simple_form.html' %}
+
+{% block title %}
+  User Profile
+{% endblock %}
+
+{% block form_title %}
+  User Profile
+{% endblock %}
+
+{% block post_form %}
+  <a href='{% url "profile-pw" %}'>Change Password</a>
+{% endblock %}

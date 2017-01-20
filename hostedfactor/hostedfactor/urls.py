@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    # By default go to the login page
+    url(r'^$', RedirectView.as_view(pattern_name='login'), name='front-page'),
+
     url(r'^admin/', admin.site.urls),
-    url(r'^users/', include('registration.backends.simple.urls')),
+    url(r'^users/', include('users.urls')),
+    url(r'^codes/', include('codes.urls')),
 ]

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+  <h1>
+    {% block form_title %}
+      Delete {% block title %}Item{% endblock %}
+    {% endblock %}
+  </h1>
+
+  {% block pre_form %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+  {% endblock %}
+
+  {% bootstrap_messages %}
+
+  {% block form %}
+    <form
+      action="{% block form_action %}{% endblock %}"
+      method="{% block form_method %}post{% endblock %}"
+      class="form"
+      {% block form_attrs %}{% endblock %}
+      >
+
+      {% csrf_token %}
+
+      {% buttons %}
+        {% block buttons %}
+          <button type="submit" class="btn btn-danger">{% block submit_name %}Delete{% endblock %}</button>
+        {% endblock %}
+      {% endbuttons %}
+    </form>
+  {% endblock %}
+
+  {% block post_form %}
+  {% endblock %}
+{% endblock %}

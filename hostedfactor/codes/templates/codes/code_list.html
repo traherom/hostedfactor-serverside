@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}
+  User Codes
+{% endblock %}
+
+{% block content %}
+  <h1>Site Codes</h1>
+
+  {% if perms.codes.can_add_code %}
+    <a href="{% url 'code-new' %}" class='btn btn-default'>Add Site</a>
+  {% endif %}
+
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for code in code_list %}
+        <tr>
+          <td>{{ code.name }}</td>
+          <td>{{ code.current_value }}</td>
+          <td>
+            <a href="{% url 'code-edit' code.pk %}" title='Edit'><i class='fa fa-pencil'></i></a>
+            <a href="{% url 'code-delete' code.pk %}" title='Delete'><i class='fa fa-trash'></i></a>
+          </td>
+        </tr>
+
+      {% empty %}
+        <tr class='empty-table'>
+          <td colspan="2">No site codes found. <a href="{% url 'code-new' %}">Add one</a> to get started!</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/autorefresh.js' %}"></script>
+{% endblock %}

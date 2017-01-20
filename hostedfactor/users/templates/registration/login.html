@@ -1,0 +1,13 @@
+{% extends 'common/simple_form.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block submit_name %}
+  Login
+{% endblock %}
+
+{% block post_form %}
+  <a href="{% url 'password_reset' %}">Forgot your password?</a>
+{% endblock %}

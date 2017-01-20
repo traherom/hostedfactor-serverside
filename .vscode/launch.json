@@ -61,7 +61,7 @@
             "name": "Django",
             "type": "python",
             "request": "launch",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "pythonPath": "${config.python.pythonPath}",
             "program": "${workspaceRoot}/hostedfactor/manage.py",
             "cwd": "${workspaceRoot}",

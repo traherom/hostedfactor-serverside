@@ -1,0 +1,16 @@
+{% extends 'common/simple_form.html' %}
+{% load bootstrap3 %}
+
+{% block form_title %}
+  {% if object %}
+    Edit
+  {% else %}
+    New
+  {% endif %}
+
+  {% block title %}Item{% endblock %}
+{% endblock %}
+
+{% block submit_name %}
+  Save
+{% endblock %}
