@@ -90,7 +90,7 @@ MIDDLEWARE = [
 # URLs
 ROOT_URLCONF = 'hostedfactor.urls'
 STATIC_URL = '/static/'
-LOGIN_URL = '/user/login/'
+LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -140,6 +140,9 @@ if USE_ROLLBAR:
     MIDDLEWARE.append('rollbar.contrib.django.middleware.RollbarNotifierMiddleware')
 else:
     logger.info('Rollbar disabled')
+
+# How long do people get to activate their account?
+ACCOUNT_ACTIVATION_DAYS = env.int('ACCOUNT_ACTIVATION_DAYS', 3)
 
 # Email gets sent to SMTP if configured, console otherwise
 DEFAULT_FROM_EMAIL = env('EMAIL_FROM', 'noreply@hostedfactor.io')

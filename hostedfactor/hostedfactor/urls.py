@@ -19,7 +19,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     # By default go to the login page
-    url(r'^$', RedirectView.as_view(pattern_name='login'), name='front-page'),
+    url(r'^$', RedirectView.as_view(pattern_name='code-list'), name='front-page'),
 
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('users.urls')),
